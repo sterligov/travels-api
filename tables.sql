@@ -1,0 +1,36 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS visits;
+
+CREATE TABLE IF NOT EXISTS users(
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender CHAR(1) NOT NULL,
+    birth_date INT(11) NOT NULL,
+    PRIMARY KEY (id),
+    INDEX(birth_date)
+) ENGINE=InnoDB DEFAULT CHARACTER SET =utf8 COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS locations(
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    place TEXT NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    distance INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    INDEX(distance)
+) ENGINE=InnoDB DEFAULT CHARACTER SET =utf8 COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS visits(
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    location INT(11) UNSIGNED NOT NULL,
+    user INT(11) UNSIGNED NOT NULL,
+    visited_at INT(11) NOT NULL,
+    mark TINYINT(1) NOT NULL,
+    PRIMARY KEY (id),
+    INDEX(visited_at),
+    INDEX(location),
+    INDEX(user)
+) ENGINE=InnoDB DEFAULT CHARACTER SET =utf8 COLLATE = utf8_unicode_ci;
